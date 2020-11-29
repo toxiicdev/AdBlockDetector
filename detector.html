@@ -1,5 +1,7 @@
 <html>
-    <head>AdBlock Detector by toxiicdev.net</head>
+    <head>
+        <title>AdBlock Detector by toxiicdev.net</title>
+    </head>
     <body>
         <div id='adblocker' style='width: 728px; height: 90px; background-color: red; color: white; font-size: 32px; text-align: center; line-height: 90px; display: none;'>Please disable your AdBlocker to help us.</div>
         <script src="adblocker.js"></script>
@@ -8,11 +10,18 @@
             setInterval(function()
             {
                 // Check for ChangeMeWithRandomString element and/or additional banner ids (example: aswift_0 is for Google Ads)
-                if(!document.getElementById('ChangeMeWithRandomString') || !document.getElementById('aswift_0'))
+
+                var lookupElements = [ 'ChangeMeWithRandomString' ]; // Add here also document ids for your running Ads (example: GoogleAds does spawn an iframe with id 'aswift_0')
+
+                for(var i = 0; i < lookupElements.length; i++)
                 {
-                    document.getElementById("adblocker").style.display = 'block'; // Show the AdBlocker warning or replace with your own message.
+                    if(!document.getElementById(lookupElements[i]))
+                    {
+                        document.getElementById("adblocker").style.display = 'block'; // Show the AdBlocker warning or replace with your own message.
+                        break; // AdBlock/uBlock detected, useless to continue looping
+                    }
                 }
             }, 1000);
         </script>
     </body>
-</html>>
+</html>
