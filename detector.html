@@ -1,0 +1,18 @@
+<html>
+    <head>AdBlock Detector by toxiicdev.net</head>
+    <body>
+        <div id='adblocker' style='width: 728px; height: 90px; background-color: red; color: white; font-size: 32px; text-align: center; line-height: 90px; display: none;'>Please disable your AdBlocker to help us.</div>
+        <script src="adblocker.js"></script>
+        <script>
+            // Trigger the AdBlock Detector message after 1 second (please use at least a second of delay to let your webpage load remote ads)
+            setInterval(function()
+            {
+                // Check for ChangeMeWithRandomString element and/or additional banner ids (example: aswift_0 is for Google Ads)
+                if(!document.getElementById('ChangeMeWithRandomString') || !document.getElementById('aswift_0'))
+                {
+                    document.getElementById("adblocker").style.display = 'block'; // Show the AdBlocker warning or replace with your own message.
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>>
